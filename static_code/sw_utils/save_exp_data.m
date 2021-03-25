@@ -7,7 +7,5 @@ end
 date_str = get_escaped_datetime();
 clk = clock;
 save([folder_path,name,'_',date_str], 'metadata',  'exp_data','clk')
-
-
 end
 
