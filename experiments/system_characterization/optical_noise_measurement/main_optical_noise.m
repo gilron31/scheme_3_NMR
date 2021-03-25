@@ -18,12 +18,16 @@ fprintf(scope2.Ins, ':WAV:POIN 500000');
 scope2.setTscale(50);
 scope2.setVscale(3, 0.1);
 scope2.setVscale(4, 0.1);
-
+%%
 scope2.Single();
 pause(500)
 [t3, v3] = scope2.Read(3);
 [t4, v4] = scope2.Read(4);
 
+exp_data.main_BPD = v3;
+exp_data.secondary_BPD = v4;
+exp_data.time = t3;
+ %% This section may vary between experiments and is saved indepedently for each experiment
 optical_setup.pump_on = 0;
 optical_setup.prob_on = 1;
 optical_setup.pump_detune = 200e-3;
@@ -33,9 +37,6 @@ optical_setup.prob_ampere = 102;
 optical_setup.pump_power = 0;
 optical_setup.prob_power = 5.1e-3;
 
-exp_data.main_BPD = v3;
-exp_data.secondary_BPD = v4;
-exp_data.time = t3;
 
 save('exp_resutls', 'optical_setup', 'channel_configuration',  'exp_data')
 
