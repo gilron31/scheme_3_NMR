@@ -35,9 +35,10 @@ optical_setup.prob_detune = -12e-3;
 optical_setup.pump_ampere = 123;
 optical_setup.prob_ampere = 102;
 optical_setup.pump_power = 0;
-optical_setup.prob_power = 5.1e-3;
+optical_setup.prob_power = 22.1e-3;
 
-
-save('exp_resutls', 'optical_setup', 'channel_configuration',  'exp_data')
+date_str = get_escaped_datetime();
+clk = clock;
+save(['exp_resutls_',date_str], 'optical_setup', 'channel_configuration',  'exp_data','clk')
 
 
