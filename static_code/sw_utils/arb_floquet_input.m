@@ -16,9 +16,11 @@ function [ sig, fs, amppp ] = arb_floquet_input(offset, beta_fast, f_fast, beta_
     
 %     inst_freq = f_fast * (1 + beta_slow * sin(2*pi*ts*f_slow));
     inst_phase = 2 * pi .* ts * f_fast - f_fast * beta_slow * 1/(f_slow) .* cos(2*pi*ts*f_slow);
-%     init_phase = - f_fast * beta_slow * 1/(f_slow);
-%     final_phase = 2 * pi .* T_cycle * f_fast - f_fast * beta_slow * 1/(f_slow) .* cos(2*pi*T_cycle*f_slow);
-%     
+    init_phase = - f_fast * beta_slow * 1/(f_slow);
+    final_phase = 2 * pi .* T_cycle * f_fast - f_fast * beta_slow * 1/(f_slow) .* cos(2*pi*T_cycle*f_slow);
+    
+    phase_diff = mod(final_phase - init_phase , 2 * pi)
+    
     sig = offset * (beta_slow .* sin(2*pi*ts*f_slow)) + offset*beta_fast*sin(inst_phase) .* (1 + beta_slow .* sin(2*pi*ts*f_slow));
     fs = 1/(ts(2) - ts(1));
 %     amppp = offset * beta_slow + offset * beta_fast * (1 + beta_slow) - offset *(-  beta_slow - beta_fast * (1 - beta_slow) );

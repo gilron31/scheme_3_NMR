@@ -6,6 +6,6 @@ if ~exist('folder_path')
 end
 date_str = get_escaped_datetime();
 clk = clock;
-save([folder_path,name,'_',date_str], 'metadata',  'exp_data','clk')
+save([folder_path,name,'_',date_str, '.mat'], 'metadata',  'exp_data','clk')
 end
 

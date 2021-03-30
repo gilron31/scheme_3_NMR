@@ -4,7 +4,8 @@ function [f,Y,figure_pointer] = getFFT(t,y,to_plot)
 % frequency steps (f=(-1/(2*dt)):(1/(max(t)-min(t))):(1/(2*dt))) and plots
 % the absolute value of the transform abs(Y) vs f if requsted
 
-f = (-1/(2*mean(diff(t)))):(1/(max(t)-min(t))):(1/(2*mean(diff(t))));
+% f = (-1/(2*mean(diff(t)))):(1/(max(t)-min(t))):(1/(2*mean(diff(t))));
+f = linspace(-1/(2*mean(diff(t))), 1/(2*mean(diff(t))), length(t));
 Y = fftshift(fft(y));
 
 if ( exist('to_plot','var') && to_plot ) || nargout==3

@@ -34,6 +34,6 @@ function [ exp_data ] = get_complete_tf(instr,  fspan, amppp, optical_data, LIA_
     metadata.optical_data = optical_data;
     metadata.LIA_data = LIA_data;
     metadata.notes = notes;
-    save_exp_data([exp_data, '.mat'], 'sch3TF', metadata, fold_path);
+    save_exp_data(exp_data, 'sch3TF', metadata, fold_path);
 end
 
