@@ -8,16 +8,17 @@ function [ exp_data ] = mes_tf_single_axis(ag, sc, ch_slow_x, ch_slow_y, ch_fast
     ag_dc = wfrm{1}.p(3);
 
     exp_data.iterations = [];
-    exp_data.fspan = fsapn;
+    exp_data.fspan = fspan;
     exp_data.amppp = amppp;
     
     for f = fspan
         
         t_mes = 10/f;
-        sc.setTscale(tmes / 10);
-        ag.Sin(f, amppp, ag_dc);
+        sc.setTscale(t_mes / 10);
+        ag.Sin(CH_AG_SIG, f, amppp, 0.0, ag_dc);
         pause(BUILD_TIME_S);
         sc.Single();
+        sc.readyToRead(2*t_mes + 1);
         [t, v_slow_x] = sc.Read(ch_slow_x);
         [t, v_slow_y] = sc.Read(ch_slow_y);
         [t, v_fast] = sc.Read(ch_fast);
