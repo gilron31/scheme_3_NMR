@@ -27,13 +27,13 @@ function [ exp_data ] = get_complete_tf(instr,  fspan, amppp, optical_data, LIA_
     input(PROMPT);
     
     exp_data.exp_data_y = mes_tf_single_axis(instr.AG1, instr.scope2, CH_SLOW_X, CH_SLOW_Y, CH_FAST, CH_REF, fspan, amppp); 
-    instr.AG5.DC(CH_AG_SIG, ag_y_dc);
+    instr.AG1.DC(CH_AG_SIG, ag_y_dc);
 
     %%
     
     metadata.optical_data = optical_data;
     metadata.LIA_data = LIA_data;
     metadata.notes = notes;
-    save_exp_data(exp_data, 'sch3TF', metadata, fold_path);
+    save_exp_data([exp_data, '.mat'], 'sch3TF', metadata, fold_path);
 end
 

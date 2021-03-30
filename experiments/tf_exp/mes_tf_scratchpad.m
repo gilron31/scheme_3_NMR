@@ -25,5 +25,5 @@ LIA_setup.SR830_sens = 10e-3;
 
 %% 
 floquet_note = '[sig, fs, amppp] = arb_floquet_input(1.0,1.2 ,51.8e3, 0.1, 131.5);';
-fspan = [0.2, 0.5, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0];
+fspan = [0.2,0.3,0.4, 0.5, 0.8, 1.0,1.2, 1.5,1.7, 2.0,2.2,2.5, 3.0, 4.0, 5.0];
 exp_data = get_complete_tf(instr, fspan, 2e-3, optical_setup, LIA_setup, '.', floquet_note);
