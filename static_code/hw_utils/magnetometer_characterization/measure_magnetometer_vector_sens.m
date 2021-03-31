@@ -1,10 +1,14 @@
-function [ exp_data , raw_data] = measure_magnetometer_vector_sens( agx, agy, sc, ch_ref_x, ch_ref_y, ch_main, ch_sec, nfig)
+function [ exp_data , raw_data] = measure_magnetometer_vector_sens( agx, agy, sc, ch_ref_x, ch_ref_y, ch_main, ch_sec, nfig, F_SIM_X, F_SIM_Y)
 %MEASURE_MAGNETOMETER_VECTOR_SENS Summary of this function goes here
 %   Detailed explanation goes here
    %% Software stuff
     DRIVE_AMP_Vpp = 2e-3; 
-    F_SIM_X = 231;
-    F_SIM_Y = 341;
+    if ~exist('F_SIM_X')
+        F_SIM_X = 231;
+    end
+    if ~exist('F_SIM_Y')
+        F_SIM_Y = 341;
+    end
     T_MES = 1.0;
     CH_AG_SIG = 2;
     
@@ -53,16 +57,16 @@ function [ exp_data , raw_data] = measure_magnetometer_vector_sens( agx, agy, sc
     main_res_to_y_raw = get_sine_parameters(t, v_main, F_SIM_Y) / ref_y_phase;
     sec_res_to_y_raw = get_sine_parameters(t, v_sec, F_SIM_Y) / ref_y_phase;
     %%%should add assertion if imaginary part is too big.
-    
+    tan(angle([main_res_to_x_raw, sec_res_to_x_raw, main_res_to_y_raw, sec_res_to_y_raw]))
     
     main_sens_vec = [real(main_res_to_x_raw), real(main_res_to_y_raw)] ;
     sec_sens_vec = [real(sec_res_to_x_raw), real(sec_res_to_y_raw)] ;
     
     %%
     if (nfig)
-        figure; plot([0,main_sens_vec(1)], [0,main_sens_vec(2)], 'b-x');
+        figure(nfig); plot([0,main_sens_vec(1)], [0,main_sens_vec(2)], '-x');
         hold on;
-        plot([0,sec_sens_vec(1)], [0,sec_sens_vec(2)], 'r-x');
+        plot([0,sec_sens_vec(1)], [0,sec_sens_vec(2)], '-x');
         legend('main', 'sec')
         grid on;
     end

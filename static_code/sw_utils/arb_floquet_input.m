@@ -1,4 +1,4 @@
-function [ sig, fs, amppp, ts , sig_func] = arb_floquet_input(offset, beta_fast, f_fast, beta_slow, f_slow, adjust_slow_phase, adjust_slow_amp)
+function [ sig, fs, amppp, ts , sig_func] = arb_floquet_input(offset, beta_fast, f_fast, beta_slow, f_slow, adjust_slow_phase, adjust_slow_amp, freq_div_2_moddepth)
 %GENERATE_ARB Summary of this function goes here
 %   Detailed explanation goes here
     

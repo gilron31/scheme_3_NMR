@@ -1,4 +1,4 @@
-function [  ] = analyze_autotune( exp_data , nfig)
+function [final_main_sens, final_sec_sens, final_A, final_F] = analyze_autotune( exp_data , nfig)
 %ANALYZE_AUTOTUNE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -45,5 +45,13 @@ function [  ] = analyze_autotune( exp_data , nfig)
     plot(1:N_iter, [exp_data.iter_datas.chosen_best_A]);
     subplot(2,1,2)
     plot(1:N_iter, [exp_data.iter_datas.chosen_best_F]);
+    
+    
+    [val, ind] = max(exp_data.iter_datas(end).A_scores)
+    final_main_sens = exp_data.iter_datas(end).A_exp_datas(ind).main_sens_vec
+    final_sec_sens = exp_data.iter_datas(end).A_exp_datas(ind).sec_sens_vec
+    final_A = exp_data.iter_datas(end).chosen_best_A
+    final_F = exp_data.iter_datas(end).chosen_best_F
+
 end
 
