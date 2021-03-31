@@ -1,4 +1,4 @@
-function [ f, G2Xe,  A,logAXT2] = AnalyseXeT2(t,v,f_estim,G2estim,filter ,nfig)
+function [ f, G2Xe,  A,logAXT2] = fit_one_decaying_exp(t,v,f_estim,G2estim,filter ,nfig)
     
     
     Ng = 8;
