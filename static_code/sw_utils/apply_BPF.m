@@ -1,4 +1,4 @@
-function [ t_filt, v_filt ] = get_BPF( t, v, fmin, fmax )
+function [ t_filt, v_filt ] = apply_BPF( t, v, fmin, fmax )
 %GET_BPF Summary of this function goes here
 %   Detailed explanation goes here
 
