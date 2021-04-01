@@ -28,7 +28,7 @@ sc.setTscale(T_mes / 10);
 
 
 sc.Single()
-sc.readyToRead(2*T_mes + 1);
+sc.readyToRead(3*T_mes + 1);
 [res.t, res.v_main] = sc.Read(CH_MAIN);
 [res.t, res.v_sec] = sc.Read(CH_SEC);
 [res.t, res.v_fast_ref] = sc.Read(CH_FAST_REF);
