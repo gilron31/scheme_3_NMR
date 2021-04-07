@@ -2,8 +2,10 @@
 OFFSET = 0.5;
 INIT_F = 29.400e3;
 INIT_A = 1.42;
-CH_AGF = 1;
+CH_AGF =1;
 agf = instr.AG3;
+fprintf(agf.Ins,':SOURce1:TRACk ON')
+agf.OutputON([1,2])
 %%
 
 % moddepths = [0.0,-0.05,-0.04, -0.03,-0.02,-0.01,0.0 0.01, 0.02, 0.03, 0.04, 0.05];

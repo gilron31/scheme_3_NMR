@@ -13,7 +13,8 @@ CH_AG_SIG = 2;
 FREQ_DIV_2_MOD = 22000;
 AMP_DIV_2_MOD = 0;
 moddepth = 0.1;
-slow_mod_freq = 66.21508;
+% slow_mod_freq = 66.21508;
+slow_mod_freq = 66.51461;
 [sig, fs, amppp, ts, sig_funcs] = arb_floquet_input2(OFFSET*moddepth, slow_mod_freq, INIT_A/2, INIT_F, moddepth*FREQ_DIV_2_MOD/INIT_F,moddepth * AMP_DIV_2_MOD /(INIT_A/2) );
 
 agf.LoadARB(CH_AGF, fs, sig, amppp, 'sine_1');
@@ -28,10 +29,14 @@ agf.LoadARB(CH_AGF, fs, sig, amppp, 'sine_1');
     instr.AG1.DC(CH_AG_SIG, ag_y_dc);
 % fspan = [0.05, 0.07, 0.1, 0.12, 0.15, 0.2, 0.25];
 fspan = [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.7, 1.0, 2.0, 3.0];
+% fspan = [0.5, 0.7, 1.0, 2.0, 3.0];
 DRIVE_AMPPP = 2e-3;
-input('PLUG X ref');
+% input('PLUG X ref');
+switch_ref_measurement(instr.AG1, 'x')
 exp_data_x = single_tf_no_fastLIA(instr.AG5, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, fspan, DRIVE_AMPPP, slow_mod_freq);
-input('PLUG Y ref');
+% input('PLUG Y ref');
+switch_ref_measurement(instr.AG1, 'y')
+
     instr.AG5.DC(CH_AG_SIG, ag_x_dc);
 
 exp_data_y = single_tf_no_fastLIA(instr.AG1, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, fspan, DRIVE_AMPPP, slow_mod_freq);

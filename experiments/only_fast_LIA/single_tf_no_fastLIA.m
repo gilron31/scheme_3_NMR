@@ -14,7 +14,7 @@ function [ exp_data ] = single_tf_no_fastLIA(ag, sc, ch_main, ch_sec, ch_fast_re
     exp_data.amppp = amppp;
     
     for f = fspan
-        
+        display(sprintf('Acquiring tf at frequency: %d', f))
         t_mes = 10/f;
         sc.setTscale(t_mes / 10);
         ag.Sin(CH_AG_SIG, f, amppp, 0.0, ag_dc);

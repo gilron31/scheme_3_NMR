@@ -30,10 +30,17 @@ sc.setTscale(T_mes / 10);
 sc.Single()
 sc.readyToRead(3*T_mes + 1);
 [res.t, res.v_main] = sc.Read(CH_MAIN);
-[res.t, res.v_sec] = sc.Read(CH_SEC);
-[res.t, res.v_fast_ref] = sc.Read(CH_FAST_REF);
-[res.t, res.v_calib_ref] = sc.Read(CH_CALIB_REF);
+[res.ts, res.v_sec] = sc.Read(CH_SEC);
+[res.tf, res.v_fast_ref] = sc.Read(CH_FAST_REF);
+[res.tc, res.v_calib_ref] = sc.Read(CH_CALIB_REF);
 
+% display([length(res.t), length(res.ts), length(res.tf), length(res.tc)])
+% display([length(res.v_main), length(res.v_sec), length(res.v_fast_ref), length(res.v_calib_ref)])
+
+len_diff = length(res.t) - length(res.v_main);
+if (abs(len_diff)>0)
+    display('Acquire high res nofastLIA returned nonmatching t,v')
+end
 
 
 
