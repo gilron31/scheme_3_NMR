@@ -27,6 +27,7 @@ classdef AG33500B
    end
    methods
     function obj = AG33500B(serial,connection_type)
+%         display('dis play')
         if ~exist('serial','var'); serial = '02252'; end
         if ~exist('connection_type','var'); connection_type = 'tcpip'; end
         switch lower(connection_type)
@@ -534,6 +535,16 @@ classdef AG33500B
         outtext = [outtext ' ' 'Voffset: ' num2str(voffset)];
         outtext = [outtext ' ' 'Func: ' func];
         outtext = [outtext ' ' 'freq: ' freq];
+    end
+    
+    function WhiteNoise(obj, ch, bandwidth, ampvpp, dc_offset)
+        ch = num2str(ch); 
+        bandwidth = num2str(bandwidth); 
+        ampvpp = num2str(ampvpp); 
+        dc_offset = num2str(dc_offset); 
+        fprintf(obj.Ins,[':SOURce' ch ':APPLy:NOISe ' '0' ', ' ampvpp ', ' dc_offset ''])
+        fprintf(obj.Ins,[':SOURce2:FUNCtion:NOISe:BANDwidth ' bandwidth ''])
+
     end
     
     function SweepConfig(obj,ch,type,timev,freq_startv,freq_stopv,hold_timev,return_timev)

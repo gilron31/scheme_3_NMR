@@ -1,8 +1,10 @@
-function [ sig, fs, amppp, ts ,sig_funcs] = arb_floquet_input2(slow_amp, slow_freq, fast_amp, fast_freq, FM_depth, AM_depth)
+function [ sig, fs, amppp, ts ,sig_funcs] = arb_floquet_input2(slow_amp, slow_freq, fast_amp, fast_freq, FM_depth, AM_depth, N_CYCLE)
 %GENERATE_ARB Summary of this function goes here
 %   Detailed explanation goes here
     MAX_N_SAMPLE = 6e4;
-    N_CYCLE = 1;
+    if ~exist('N_CYCLE')
+        N_CYCLE = 1;
+    end
     T_cycle = N_CYCLE/slow_freq;
     ts = linspace(0, T_cycle, MAX_N_SAMPLE);
     sig_funcs.slow_sig = @(t) slow_amp * sin(2*pi*slow_freq*t);

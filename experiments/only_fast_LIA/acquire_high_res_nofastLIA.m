@@ -4,6 +4,7 @@ CH_MAIN = 2;
 CH_SEC = 3;
 CH_CALIB_REF = 4;
 CH_FAST_REF = 1;
+VSCALE_DEFAULT_V = 5e-3;
 
 sc.Reset;
 pause(1)
@@ -20,10 +21,10 @@ sc.setChCoupling(CH_FAST_REF, 'AC')
 sc.setChCoupling(CH_MAIN, 'DC')
 sc.setChCoupling(CH_SEC, 'DC')
 sc.setChCoupling(CH_CALIB_REF, 'DC')
-sc.setVscale(CH_FAST_REF, 20e-3);
-sc.setVscale(CH_MAIN, 20e-3);
-sc.setVscale(CH_SEC, 20e-3);
-sc.setVscale(CH_CALIB_REF, 20e-3);
+sc.setVscale(CH_FAST_REF, VSCALE_DEFAULT_V);
+sc.setVscale(CH_MAIN, VSCALE_DEFAULT_V);
+sc.setVscale(CH_SEC, VSCALE_DEFAULT_V);
+sc.setVscale(CH_CALIB_REF, VSCALE_DEFAULT_V);
 sc.setTscale(T_mes / 10);
 
 

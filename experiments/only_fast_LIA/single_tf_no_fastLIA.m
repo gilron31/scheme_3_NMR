@@ -5,7 +5,7 @@ function [ exp_data ] = single_tf_no_fastLIA(ag, sc, ch_main, ch_sec, ch_fast_re
     CH_AG_SIG = 2;
     BUILD_TIME_S = 1;
     [stt, wfrm] = ag.Output(CH_AG_SIG, 1, true); 
-    SLOW_LIA_TC = 1e-1;
+    SLOW_LIA_TC = 5e-2;
     ag_dc = wfrm{1}.p(3);
     
 

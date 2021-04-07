@@ -12,10 +12,13 @@ CH_AG_SIG = 2;
 
 FREQ_DIV_2_MOD = 22000;
 AMP_DIV_2_MOD = 0;
-moddepth = 0.1;
-% slow_mod_freq = 66.21508;
-slow_mod_freq = 66.51461;
-[sig, fs, amppp, ts, sig_funcs] = arb_floquet_input2(OFFSET*moddepth, slow_mod_freq, INIT_A/2, INIT_F, moddepth*FREQ_DIV_2_MOD/INIT_F,moddepth * AMP_DIV_2_MOD /(INIT_A/2) );
+moddepth = 0.2;
+slow_mod_freq = 65.869;
+% slow_mod_freq = 66.5147;
+% slow_mod_freq = 60.49281;
+% slow_mod_freq = 66.06631;
+N_CYCLE = 3;
+[sig, fs, amppp, ts, sig_funcs] = arb_floquet_input2(OFFSET*moddepth, slow_mod_freq, INIT_A/2, INIT_F, moddepth*FREQ_DIV_2_MOD/INIT_F,moddepth * AMP_DIV_2_MOD /(INIT_A/2) , N_CYCLE);
 
 agf.LoadARB(CH_AGF, fs, sig, amppp, 'sine_1');
 % oscilating_exp_data = measure_magnetometer_vector_sens(instr.AG5, instr.AG1, instr.scope2, 1, 4, 2, 3, 66);
@@ -29,20 +32,32 @@ agf.LoadARB(CH_AGF, fs, sig, amppp, 'sine_1');
     instr.AG1.DC(CH_AG_SIG, ag_y_dc);
 % fspan = [0.05, 0.07, 0.1, 0.12, 0.15, 0.2, 0.25];
 fspan = [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.7, 1.0, 2.0, 3.0];
+% fspan = [0.1,0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.7, 1.0, 2.0, 3.0];
 % fspan = [0.5, 0.7, 1.0, 2.0, 3.0];
 DRIVE_AMPPP = 2e-3;
-% input('PLUG X ref');
+TMES_WN = 500;
+%%
 switch_ref_measurement(instr.AG1, 'x')
-exp_data_x = single_tf_no_fastLIA(instr.AG5, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, fspan, DRIVE_AMPPP, slow_mod_freq);
-% input('PLUG Y ref');
+% exp_data_x = single_tf_no_fastLIA(instr.AG5, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, fspan, DRIVE_AMPPP, slow_mod_freq);
+exp_data_x = single_tf_no_fastLIA_wnoise(instr.AG5, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, TMES_WN, DRIVE_AMPPP, slow_mod_freq);
+
 switch_ref_measurement(instr.AG1, 'y')
+instr.AG5.DC(CH_AG_SIG, ag_x_dc);
+% exp_data_y = single_tf_no_fastLIA(instr.AG1, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, fspan, DRIVE_AMPPP, slow_mod_freq);
+exp_data_y = single_tf_no_fastLIA_wnoise(instr.AG1, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, TMES_WN, DRIVE_AMPPP, slow_mod_freq);
+%%
+exp_params.OFFSET = OFFSET;
+exp_params.INIT_F = INIT_F;
+exp_params.INIT_A = INIT_A;
+exp_params.FREQ_DIV_2_MOD = FREQ_DIV_2_MOD;
+exp_params.AMP_DIV_2_MOD = AMP_DIV_2_MOD;
+exp_params.moddepth = moddepth;
+exp_params.slow_mod_freq = slow_mod_freq;
+exp_params.N_CYCLE = N_CYCLE;
+%%
+instr.AG1.DC(CH_AG_SIG, ag_y_dc);
 
-    instr.AG5.DC(CH_AG_SIG, ag_x_dc);
-
-exp_data_y = single_tf_no_fastLIA(instr.AG1, instr.scope2, CH_MAIN,CH_SEC,CH_FAST_REF,CH_DRIVE_REF, fspan, DRIVE_AMPPP, slow_mod_freq);
-    instr.AG1.DC(CH_AG_SIG, ag_y_dc);
-
+exp_data.exp_params = exp_params;
 exp_data.exp_data_x = exp_data_x;
 exp_data.exp_data_y = exp_data_y;
-
-save_exp_data(exp_data, 'tf_without_slow_LIA', optical_setup, '.')
+save_exp_data(exp_data, 'tf_without_slow_LIA_wnoise', optical_setup, '.')
