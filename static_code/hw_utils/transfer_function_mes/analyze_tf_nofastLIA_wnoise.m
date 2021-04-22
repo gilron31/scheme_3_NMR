@@ -20,6 +20,9 @@ function [  ] = analyze_tf_nofastLIA_wnoise( exp_data_dir )
     BW = 4;
     FILT_PARAM = 10;
     figure; plot(f, medfilt1(abs(sf_calib), FILT_PARAM)); xlim([-2 * BW, 2*BW])
+    
+%     sf_calib(abs(sf_calib)>0.1) = 1000;
+    
     figure; plot(f, smooth(real(sf_sin_main./sf_calib), FILT_PARAM), f, smooth(imag(sf_sin_main./sf_calib), FILT_PARAM)); xlim([-2 * BW, 2*BW])
     figure; plot(f, smooth(real(sf_sin_sec./sf_calib), FILT_PARAM), f, smooth(imag(sf_sin_sec./sf_calib), FILT_PARAM)); xlim([-2 * BW, 2*BW])
 
