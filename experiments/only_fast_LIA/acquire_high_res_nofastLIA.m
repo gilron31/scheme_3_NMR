@@ -4,7 +4,7 @@ CH_MAIN = 2;
 CH_SEC = 3;
 CH_CALIB_REF = 4;
 CH_FAST_REF = 1;
-VSCALE_DEFAULT_V = 5e-3;
+VSCALE_DEFAULT_V = 20e-3;
 
 sc.Reset;
 pause(1)

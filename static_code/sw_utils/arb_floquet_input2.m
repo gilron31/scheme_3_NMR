@@ -1,7 +1,7 @@
 function [ sig, fs, amppp, ts ,sig_funcs] = arb_floquet_input2(slow_amp, slow_freq, fast_amp, fast_freq, FM_depth, AM_depth, N_CYCLE)
 %GENERATE_ARB Summary of this function goes here
 %   Detailed explanation goes here
-    MAX_N_SAMPLE = 6e4;
+    MAX_N_SAMPLE = 5e4;
     if ~exist('N_CYCLE')
         N_CYCLE = 1;
     end

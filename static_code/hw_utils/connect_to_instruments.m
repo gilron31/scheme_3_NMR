@@ -8,14 +8,19 @@ addpath('E:\NMRGGil\scheme_3_home\static_code\hw_utils\instruments');
 
 %% connecting to the instruments
 %%
-master_instr.LIA2 = SR844(5,0); fopen(master_instr.LIA2.Ins);
-master_instr.LIAESR = SR844(6,0); fopen(master_instr.LIAESR.Ins);
-[master_instr.LIA2.IDN,master_instr.LIAESR.IDN]
+% master_instr.LIA2 = SR844(5,0); fopen(master_instr.LIA2.Ins);
+% master_instr.LIAESR = SR844(6,0); fopen(master_instr.LIAESR.Ins);
+% [master_instr.LIA2.IDN,master_instr.LIAESR.IDN]
 %%
-master_instr.AG1 = AG33500B('192.168.1.15','tcpip'); fopen(master_instr.AG1.Ins);
+master_instr.AG1 = AG33500B('192.168.1.17','tcpip'); fopen(master_instr.AG1.Ins);
 master_instr.AG2 = AG33500B('0x2307::MY50002059','USB'); fopen(master_instr.AG2.Ins);
-master_instr.AG3 = AG33500B('192.168.1.17','tcpip'); fopen(master_instr.AG3.Ins);
+master_instr.AG3 = AG33500B('192.168.1.15','tcpip'); fopen(master_instr.AG3.Ins);
 master_instr.AG5 = AG33500B('192.168.1.18','tcpip');fopen(master_instr.AG5.Ins);
+% master_instr.AG1 = AG33500B('192.168.1.15','tcpip'); fopen(master_instr.AG1.Ins);
+% master_instr.AG2 = AG33500B('0x2307::MY50002059','USB'); fopen(master_instr.AG2.Ins);
+% master_instr.AG3 = AG33500B('192.168.1.17','tcpip'); fopen(master_instr.AG3.Ins);
+% master_instr.AG5 = AG33500B('192.168.1.18','tcpip');fopen(master_instr.AG5.Ins);
+
 [master_instr.AG1.IDN, master_instr.AG2.IDN, master_instr.AG5.IDN, master_instr.AG3.IDN]
 %%
 try
