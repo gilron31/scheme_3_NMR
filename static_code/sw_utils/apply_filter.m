@@ -4,7 +4,7 @@ function [ t_filt, v_filt ] = apply_filter( t, v, filt )
 
 
 % MAKE SURE FILTER IS HERMITIAN f(-w) = f*(w)
-    display([length(t), length(v)])
+%     display([length(t), length(v)])
     [f, sf] = getFFT(t, v);
     sf_filt = sf .* filt(f);
     

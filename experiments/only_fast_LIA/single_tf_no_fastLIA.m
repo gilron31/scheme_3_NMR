@@ -7,7 +7,7 @@ function [ exp_data ] = single_tf_no_fastLIA(ag, sc, ch_main, ch_sec, ch_fast_re
     [stt, wfrm] = ag.Output(CH_AG_SIG, 1, true); 
     SLOW_LIA_TC = 5e-2;
     ag_dc = wfrm{1}.p(3);
-    
+    SAVE_WFRM = false;
 
     exp_data.iterations = [];
     exp_data.fspan = fspan;
@@ -28,11 +28,13 @@ function [ exp_data ] = single_tf_no_fastLIA(ag, sc, ch_main, ch_sec, ch_fast_re
 %         
         res = acquire_high_res_nofastLIA(sc, t_mes);
         iter_data.f = f;
-        iter_data.t = res.t;
-        iter_data.v_main = res.v_main;
-        iter_data.v_sec = res.v_sec;
-        iter_data.v_fast_ref = res.v_fast_ref;
-        iter_data.v_calib_ref = res.v_calib_ref;
+        if (SAVE_WFRM)
+            iter_data.t = res.t;
+            iter_data.v_main = res.v_main;
+            iter_data.v_sec = res.v_sec;
+            iter_data.v_fast_ref = res.v_fast_ref;
+            iter_data.v_calib_ref = res.v_calib_ref;
+        end
         t = res.t;
         
         

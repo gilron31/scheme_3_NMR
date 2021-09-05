@@ -21,8 +21,8 @@ function [  ] = analyze_tf_nofastLIA( exp_data )
     rel_sec_sin_sub = rel_sec_sin - rel_sec_sin(end);
     rel_sec_cos_sub = rel_sec_cos - rel_sec_cos(end);
    
-   figure; plot(fspan, abs(rel_main_cos_sub), '-o');
-   hold on; plot(fspan, abs(rel_main_sin_sub), '-o');
+%    figure; plot(fspan, abs(rel_main_cos_sub), '-o');
+%    hold on; plot(fspan, abs(rel_main_sin_sub), '-o');
 %    hold on; plot(fspan, abs(rel_main_dc_sub));
 %        figure; plot(fspan, abs(rel_sec_cos_sub));
 %    hold on; plot(fspan, abs(rel_sec_sin_sub));
@@ -30,7 +30,10 @@ function [  ] = analyze_tf_nofastLIA( exp_data )
 % % 
    figure; plot(fspan, real(rel_main_cos), '-o', fspan, imag(rel_main_cos), '-o');
    hold on;plot(fspan, real(rel_main_sin), '-o', fspan, imag(rel_main_sin), '-o');
-%    hold on; plot(fspan, real(rel_main_dc), fspan, imag(rel_main_dc));
+   hold on; plot(fspan, real(rel_main_dc), fspan, imag(rel_main_dc));
+   figure; plot(fspan, real(rel_sec_cos), '-o', fspan, imag(rel_sec_cos), '-o');
+   hold on;plot(fspan, real(rel_sec_sin), '-o', fspan, imag(rel_sec_sin), '-o');
+   hold on; plot(fspan, real(rel_sec_dc), fspan, imag(rel_sec_dc));
 
 %       figure; plot(fspan, abs(rel_sec_cos));
 %    hold on; plot(fspan, abs(rel_sec_sin));

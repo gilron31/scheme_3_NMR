@@ -28,7 +28,7 @@ sc.setVscale(CH_CALIB_REF, VSCALE_DEFAULT_V);
 sc.setTscale(T_mes / 10);
 
 
-sc.Single()
+sc.Single();
 sc.readyToRead(3*T_mes + 1);
 [res.t, res.v_main] = sc.Read(CH_MAIN);
 [res.ts, res.v_sec] = sc.Read(CH_SEC);
