@@ -18,6 +18,7 @@ slow_mod_freq = 30.4028;
 
 agf.Sin(CH_AGF, INIT_F, INIT_A, 0.0, OFFSET); 
 % natural_exp_data = measure_magnetometer_vector_sens(instr.AG5, instr.AG1, instr.scope2, 1, 4, 2, 3, 66);
+natural_exp_data = measure_magnetometer_vector_sens_and_noise(67,instr,75,75,calibration_params);
 natural_exp_data = measure_magnetometer_vector_sens2(instr.AG5, instr.AG1, instr.scope2, 4, 2, 3, 66, instr, 75, 75);
 natural_exp_data = measure_magnetometer_vector_sens2(instr.AG5, instr.AG1, instr.scope2, 4, 2, 3, 66, instr, 175, 175);
 

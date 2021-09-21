@@ -57,6 +57,44 @@ master_instr.h_xPr.Identify;
 
 master_instr.h_xPr.SetJogStepSize(0.00, 0.02);
 
+%% doing channel based wiring
+%xyz coils
+master_instr.Bx.device = master_instr.AG5;
+master_instr.Bx.ch = 2;
+master_instr.By.device = master_instr.AG1;
+master_instr.By.ch = 2;
+master_instr.Bz.device = master_instr.AG3;
+master_instr.Bz.ch = 2;
+
+master_instr.switch_ref.device = master_instr.AG1;
+master_instr.switch_ref.ch = 1;
+master_instr.sync_scopes.device = master_instr.AG5;
+master_instr.sync_scopes.ch = 1;
+
+%commented because AG2 has a bug, UNCOMMENT when AG2 is back to normal
+% master_instr.pump_detuning.device = master_instr.AG2;
+% master_instr.pump_detuming.ch = 1;
+% master_instr.probe_detuning.device = master_instr.AG2;
+% master_instr.probe_detuming.ch = 2;
+
+master_instr.slow_mod_ref.device = master_instr.scope2;
+master_instr.slow_mod_ref.ch = 1;
+master_instr.main_LIA.device = master_instr.scope2;
+master_instr.main_LIA.ch = 2;
+master_instr.secondary_LIA.device = master_instr.scope2;
+master_instr.secondary_LIA.ch = 3;
+master_instr.transverse_magnetic_ref.device = master_instr.scope2;
+master_instr.transverse_magnetic_ref.ch = 4;
+
+master_instr.bpd_210A_rf.device = master_instr.scope1;
+master_instr.bpd_210A_rf.ch = 1;
+master_instr.bpd_440_minus.device = master_instr.scope1;
+master_instr.bpd_440_minus.ch = 2;
+master_instr.bpd_440_rf.device = master_instr.scope1;
+master_instr.bpd_440_rf.ch = 3;
+master_instr.pump_power_indicator.device = master_instr.scope1;
+master_instr.pump_power_indicator.ch = 4;
+
 
 end
 
