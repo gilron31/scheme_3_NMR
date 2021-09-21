@@ -7,8 +7,8 @@ instr = connect_to_instruments();
 constants_define;
 
 %TODO 
-check_diode_saturation;
-calibrate_magnetic_coils;
+% check_diode_saturation;
+calibration_params = get_xyz_coils_calibration(instr, constants);
 
 %% now you can run these cute scripts:
 %measure the alkali sensitivity to transevers signals
