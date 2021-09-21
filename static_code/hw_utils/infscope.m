@@ -1,5 +1,5 @@
-sc = scope2;
-ch = 3;
+sc = instr.scope1;
+ch = 1;
 
 figure();
 while(1)

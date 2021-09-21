@@ -5,7 +5,7 @@
 % CH_AGF = 2;
 OFFSET = 1;
 INIT_F = 48.400e3;
-INIT_App = 1;
+INIT_A = 1;
 CH_AGF =2;
 agf = instr.AG3;
 %%
@@ -18,7 +18,8 @@ slow_mod_freq = 30.4028;
 
 agf.Sin(CH_AGF, INIT_F, INIT_A, 0.0, OFFSET); 
 % natural_exp_data = measure_magnetometer_vector_sens(instr.AG5, instr.AG1, instr.scope2, 1, 4, 2, 3, 66);
-natural_exp_data = measure_magnetometer_vector_sens2(instr.AG5, instr.AG1, instr.scope2, 4, 2, 3, 66, instr);
+natural_exp_data = measure_magnetometer_vector_sens2(instr.AG5, instr.AG1, instr.scope2, 4, 2, 3, 66, instr, 75, 75);
+natural_exp_data = measure_magnetometer_vector_sens2(instr.AG5, instr.AG1, instr.scope2, 4, 2, 3, 66, instr, 175, 175);
 
 [sig, fs, amppp, ts, sig_funcs] = arb_floquet_input2(OFFSET*moddepth, slow_mod_freq, INIT_A/2, INIT_F, moddepth*FREQ_DIV_2_MOD/INIT_F,moddepth * AMP_DIV_2_MOD /(INIT_A/2) );
 agf.LoadARB(CH_AGF, fs, sig, amppp, 'sine_1');

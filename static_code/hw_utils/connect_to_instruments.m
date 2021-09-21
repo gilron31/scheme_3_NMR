@@ -13,7 +13,7 @@ addpath('E:\NMRGGil\scheme_3_home\static_code\hw_utils\instruments');
 % [master_instr.LIA2.IDN,master_instr.LIAESR.IDN]
 %%
 master_instr.AG1 = AG33500B('192.168.1.17','tcpip'); fopen(master_instr.AG1.Ins);
-master_instr.AG2 = AG33500B('0x2307::MY50002059','USB'); fopen(master_instr.AG2.Ins);
+% master_instr.AG2 = AG33500B('0x2307::MY50002059','USB'); fopen(master_instr.AG2.Ins);
 master_instr.AG3 = AG33500B('192.168.1.15','tcpip'); fopen(master_instr.AG3.Ins);
 master_instr.AG5 = AG33500B('192.168.1.18','tcpip');fopen(master_instr.AG5.Ins);
 % master_instr.AG1 = AG33500B('192.168.1.15','tcpip'); fopen(master_instr.AG1.Ins);
@@ -21,7 +21,7 @@ master_instr.AG5 = AG33500B('192.168.1.18','tcpip');fopen(master_instr.AG5.Ins);
 % master_instr.AG3 = AG33500B('192.168.1.17','tcpip'); fopen(master_instr.AG3.Ins);
 % master_instr.AG5 = AG33500B('192.168.1.18','tcpip');fopen(master_instr.AG5.Ins);
 
-[master_instr.AG1.IDN, master_instr.AG2.IDN, master_instr.AG5.IDN, master_instr.AG3.IDN]
+% [master_instr.AG1.IDN, master_instr.AG2.IDN, master_instr.AG5.IDN, master_instr.AG3.IDN]
 %%
 try
 master_instr.Tabor1 = WW1071('192.168.1.110'); pause(1); fopen(master_instr.Tabor1.Ins); %Tabor1.setSingleTrigOut;

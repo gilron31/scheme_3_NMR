@@ -2,7 +2,7 @@ function [ exp_data , raw_data] = measure_magnetometer_vector_sens2( agx, agy, s
 %MEASURE_MAGNETOMETER_VECTOR_SENS Summary of this function goes here
 %   Detailed explanation goes here
    %% Software stuff
-    DRIVE_AMP_Vpp = 2e-3; 
+    DRIVE_AMP_Vpp =2e-3; 
     if ~exist('F_SIM_X')
         F_SIM_X = 231;
     end

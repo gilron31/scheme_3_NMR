@@ -1,4 +1,4 @@
-function [logZBPD] = zero_BPD_gil( motor_apt_driver,  sc,meanv_tol )
+function [logZBPD] = zero_BPD_gil( motor_apt_driver,  sc,meanv_tol, ch )
 wait_after_jog = 0.2;
 maxjog = 1.0; 
 minjog = 0.01;
@@ -10,13 +10,16 @@ ovf_mass_ratio = 0.05;
 if(~exist('meanv_tol'))
 meanv_tol = 1.0;
 end
+if(~exist('ch'))
+    ch = 4;
+end
 mean_V_2_deg_20mw = 0.9/0.02;
 
 init_pos = motor_apt_driver.GetPosition_Position(0);
 
-sc.setVoffset(4,0.0)
-sc.setVscale(4,1.0)
-sc.setChCoupling(4, 'DC')
+sc.setVoffset(ch,0.0)
+sc.setVscale(ch,1.0)
+sc.setChCoupling(ch, 'DC')
 currsctscale = sc.getTscale();
 sc.setTscale(1e-4);
 sc.TrigSource('LINE');
@@ -32,7 +35,7 @@ BPD_signal_too_big = 0;
 while(~stoploop && counter < 100)
 sc.Single()
 sc.readyToRead()
-[t,v] = sc.Read(4);
+[t,v] = sc.Read(ch);
 meanv = mean(v);
 Np = length(v);
 Nabove = length(v(v>=MAXBPD*(1-boundstol)));
@@ -93,7 +96,7 @@ else
         end
         sc.Single()
         sc.readyToRead()
-        [t,v] = sc.Read(4);
+        [t,v] = sc.Read(ch);
         meanv = mean(v);
         Np = length(v);
         Nabove = length(v(v>=MAXBPD*(1-boundstol)));
